@@ -28,6 +28,15 @@ class Node {
             System.out.println("New Value "+newNode.data+" added");
             System.out.println("Size of the linkedlist is "+size);
         }
+        void insertFirst(int value) {
+            Node newNode = new Node(value);
+            if (head != null) {
+                newNode.next = head; // step 2: new node points to old head
+            }
+            head = newNode;
+            size++;
+            System.out.println("Inserted " + value + " at the beginning.");
+        }
 
         void Display(){
             Node current = head;
@@ -104,11 +113,7 @@ public class Test {
         Linkedlist list = new Linkedlist();
         list.insert(20); //  30 56 96
         list.insert(30);
-        list.insert(46);
-        list.insert(56);
-        list.insert(96);
-        list.find(46);
-        list.find(30);
+        list.insertFirst(50);
         list.Display();
     }
 }
