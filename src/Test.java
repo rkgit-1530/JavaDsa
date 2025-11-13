@@ -28,6 +28,40 @@ class Node {
             System.out.println("New Value "+newNode.data+" added");
             System.out.println("Size of the linkedlist is "+size);
         }
+        void insertAtIndex(int index, int value) {
+            if (index < 0 || index > size) {
+                System.out.println("Invalid index!");
+                return;
+            }
+
+            // If inserting at the start
+            if (index == 0) {
+                insertFirst(value);
+                return;
+            }
+
+            // If inserting at the end
+            if (index == size) {
+                insert(value);
+                return;
+            }
+
+            // Otherwise, somewhere in the middle
+            Node newNode = new Node(value);
+            Node prev = head;
+
+            // Move to (index - 1) position
+            for (int i = 1; i < index; i++) {
+                prev = prev.next;
+            }
+
+            // Adjust links
+            newNode.next = prev.next;
+            prev.next = newNode;
+            size++;
+
+            System.out.println("Inserted " + value + " at index " + index);
+        }
         void insertFirst(int value) {
             Node newNode = new Node(value);
             if (head != null) {
@@ -37,7 +71,6 @@ class Node {
             size++;
             System.out.println("Inserted " + value + " at the beginning.");
         }
-
         void Display(){
             Node current = head;
             while (current!=null){
@@ -46,7 +79,6 @@ class Node {
             }
             System.out.println("Null");
         }
-
         void DeleteFirst(){
             int val = head.data;
             head=head.next;
@@ -114,6 +146,10 @@ public class Test {
         list.insert(20); //  30 56 96
         list.insert(30);
         list.insertFirst(50);
+        list.insertAtIndex(2,10);
+        list.insertAtIndex(0,24);
+        list.insertAtIndex(1,55);
+        list.insertAtIndex(2,65);
         list.Display();
     }
 }
